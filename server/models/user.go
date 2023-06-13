@@ -10,5 +10,5 @@ type User struct {
 	Gender   string `json:"gender" gorm:"type: varchar(255)"`
 	Address  string `json:"address" gorm:"type: varchar(255)"`
 	Status   bool   `json:"status" gorm:"type: bool"`
-	Image    string `json:"image" gorm:"type: varchar(255)"`
+	Image    string `json:"image" form:"image" gorm:"type: varchar(255)"`
 }
