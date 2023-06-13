@@ -5,7 +5,7 @@ import "github.com/gin-gonic/gin"
 func RouteInit(r *gin.RouterGroup) {
 	AuthRoutes(r)
 	UserRoutes(r)
-	// CountryRoutes(r)
+	CategoryRoutes(r)
 	// TripRoutes(r)
 	// TransactionRoutes(r)
 }
