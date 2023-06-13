@@ -16,5 +16,5 @@ type UpdateUserRequest struct {
 	Gender   string `josn:"gender" form:"gender"`
 	Phone    string `json:"phone" form:"phone"`
 	Address  string `json:"address" form:"address"`
-	Image    string `json:"image" form:"image"`
+	Image    string `json:"image"`
 }
