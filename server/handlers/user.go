@@ -107,7 +107,7 @@ func (h *handler) UpdateUser(c *gin.Context){
 		cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
 	
 		// Upload file to Cloudinary ...
-		resp, err := cld.Upload.Upload(ctx, dataFile, uploader.UploadParams{Folder: "Dumbflix"})
+		resp, err := cld.Upload.Upload(ctx, dataFile, uploader.UploadParams{Folder: "uploads"})
 	
 		if err != nil {
 			fmt.Println(err.Error())
