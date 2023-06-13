@@ -64,6 +64,8 @@ func (h *handler) GetUser(c *gin.Context) {
 }
 
 func (h *handler) UpdateUser(c *gin.Context){
+		c.Header("content-Type", "multipart/form-data")
+
 	dataFile := c.MustGet("dataFile").(string)
 		fmt.Println("this is data file", dataFile)
 	userLogin := c.MustGet("userLogin")
@@ -107,7 +109,7 @@ func (h *handler) UpdateUser(c *gin.Context){
 		cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
 	
 		// Upload file to Cloudinary ...
-		resp, err := cld.Upload.Upload(ctx, dataFile, uploader.UploadParams{Folder: "uploads"})
+		resp, err := cld.Upload.Upload(ctx, dataFile, uploader.UploadParams{Folder: "Dumbflix"})
 	
 		if err != nil {
 			fmt.Println(err.Error())
