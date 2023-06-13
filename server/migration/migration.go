@@ -10,6 +10,7 @@ func RunAutoMigrate() {
 	err := mysql.DB.AutoMigrate(
 		&models.User{},
 		&models.Category{},
+		&models.Film{},
 	
 	)
 	if err != nil {
