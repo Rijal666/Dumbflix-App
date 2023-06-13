@@ -124,6 +124,9 @@ func (h *handler) UpdateUser(c *gin.Context){
 		if request.Password != "" {
 			user.Password = password
 		}
+		if request.Gender != "" {
+			user.Gender = request.Gender
+		}
 		if request.Phone != "" {
 			user.Phone = request.Phone
 		}
