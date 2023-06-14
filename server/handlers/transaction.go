@@ -97,7 +97,7 @@ func (h *handlerTransaction) CreateTransaction(c *gin.Context) {
 		StartDate: Startdate,
 		DueDate:   Duedate,
 		Price:     30000,
-		Status:    "pending",
+		Status:    request.Status,
 	}
 
 	dataTransactions, err := h.TransactionRepository.CreateTransaction(transaction)
