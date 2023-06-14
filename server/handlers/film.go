@@ -19,6 +19,8 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 )
 
+// var path_file = "http://localhost:5000/uploads/"
+
 type handlerFilm struct {
 	FilmRepository repositories.FilmRepository
 	CategoryRepository repositories.CategoryRepository
@@ -108,21 +110,21 @@ func (h *handlerFilm) CreateFilm(c *gin.Context){
 			fmt.Println(err.Error())
 		}
 
-		categoryId, err := h.CategoryRepository.GetCategory(request.CategoryId)
-			if err != nil {
-				c.JSON(http.StatusInternalServerError, resultdto.ErrorResult{
-					Status:  http.StatusInternalServerError,
-					Message: err.Error(),
-				})
-				fmt.Println("error 1")
-			}	
+		// categoryId, err := h.CategoryRepository.GetCategory(request.CategoryId)
+		// 	if err != nil {
+		// 		c.JSON(http.StatusInternalServerError, resultdto.ErrorResult{
+		// 			Status:  http.StatusInternalServerError,
+		// 			Message: err.Error(),
+		// 		})
+		// 		fmt.Println("error 1")
+		// 	}	
 
 		film := models.Film{
 			Title: request.Title,
 			ThumbnailFilm: resp.SecureURL,
 			Year: request.Year,
 			CategoryId: request.CategoryId,
-			Category: ConvertCategoryResponse(categoryId),
+			// Category: ConvertCategoryResponse(categoryId),
 			Description: request.Description,
 		}
 
@@ -154,9 +156,9 @@ func convertResponseFilm(film models.Film) models.Film{
 	}
 }
 
-func ConvertCategoryResponse(c models.Category) models.CategoryResponse {
-	return models.CategoryResponse{
-		ID: c.ID,
-		Name: c.Name,
-	}
-}
+// func ConvertCategoryResponse(c models.Category) models.CategoryResponse {
+// 	return models.CategoryResponse{
+// 		ID: c.ID,
+// 		Name: c.Name,
+// 	}
+// }
