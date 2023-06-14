@@ -1,18 +1,14 @@
 package handlers
 
 import (
-	"context"
 	filmdto "dumbflix/dto/film"
 	resultdto "dumbflix/dto/result"
 	"dumbflix/models"
 	"dumbflix/repositories"
 	"fmt"
 	"net/http"
-	"os"
 	"strconv"
 
-	"github.com/cloudinary/cloudinary-go/v2"
-	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"github.com/golang-jwt/jwt/v4"
@@ -102,20 +98,20 @@ func (h *handlerFilm) CreateFilm(c *gin.Context){
 			return
 		}
 
-		var ctx = context.Background()
-		var CLOUD_NAME = os.Getenv("CLOUD_NAME")
-		var API_KEY = os.Getenv("API_KEY")
-		var API_SECRET = os.Getenv("API_SECRET")
+		// var ctx = context.Background()
+		// var CLOUD_NAME = os.Getenv("CLOUD_NAME")
+		// var API_KEY = os.Getenv("API_KEY")
+		// var API_SECRET = os.Getenv("API_SECRET")
 			
-		// Add your Cloudinary credentials ...
-		cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
+		// // Add your Cloudinary credentials ...
+		// cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
 	
-		// Upload file to Cloudinary ...
-		resp, err := cld.Upload.Upload(ctx, dataFile, uploader.UploadParams{Folder: "uploads"})
+		// // Upload file to Cloudinary ...
+		// resp, err := cld.Upload.Upload(ctx, dataFile, uploader.UploadParams{Folder: "uploads"})
 	
-		if err != nil {
-			fmt.Println(err.Error())
-		}
+		// if err != nil {
+		// 	fmt.Println(err.Error())
+		// }
 
 		categoryId, err := h.CategoryRepository.GetCategory(request.CategoryId)
 			if err != nil {
@@ -128,7 +124,7 @@ func (h *handlerFilm) CreateFilm(c *gin.Context){
 
 		film := models.Film{
 			Title: request.Title,
-			ThumbnailFilm: resp.SecureURL,
+			ThumbnailFilm: request.ThumbnailFilm,
 			Year: request.Year,
 			CategoryId: request.CategoryId,
 			Category: ConvertCategoryResponse(categoryId),
