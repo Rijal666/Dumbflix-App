@@ -56,10 +56,11 @@ func (h *handlerTransaction) GetTransaction(c *gin.Context) {
 func (h *handlerTransaction) CreateTransaction(c *gin.Context) {
 	userLogin := c.MustGet("userLogin")
 	userId := userLogin.(jwt.MapClaims)["id"].(float64)
+	price, _ := strconv.Atoi(c.PostForm("price"))
 
 	request := transactionsdto.TransactionRequest{
 		Status: c.PostForm("status"),
-		Price: c.PostForm("price"),
+		Price: price,
 		UserId: int(userId),
 	}
 	if err := c.Bind(request); err != nil {
@@ -96,7 +97,7 @@ func (h *handlerTransaction) CreateTransaction(c *gin.Context) {
 		User: ConvertResponseUser(user),
 		StartDate: Startdate,
 		DueDate:   Duedate,
-		Price:     30000,
+		Price:     request.Price,
 		Status:    request.Status,
 	}
 

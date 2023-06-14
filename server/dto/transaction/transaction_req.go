@@ -10,7 +10,7 @@ type TransactionRequest struct {
 	StartDate time.Time                   `json:"startdate" form:"startdate" `
 	DueDate   time.Time                   `json:"duedate" form:"duedate" `
 	Status    string                      `json:"status" form:"status" validate:"required"`
-	Price string `json:"price" form:"price" validate:"required"`
+	Price int `json:"price" form:"price" validate:"required"`
 	UserId     int         `json:"user_id"`
 	User       models.UserResponses `json:"user"`
 }
