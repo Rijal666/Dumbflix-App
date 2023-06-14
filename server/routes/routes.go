@@ -7,6 +7,6 @@ func RouteInit(r *gin.RouterGroup) {
 	UserRoutes(r)
 	CategoryRoutes(r)
 	FilmRoutes(r)
-	// TripRoutes(r)
+	EpisodeRoutes(r)
 	// TransactionRoutes(r)
 }
