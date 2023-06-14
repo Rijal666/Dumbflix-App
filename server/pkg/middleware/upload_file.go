@@ -1,18 +1,16 @@
 package middleware
 
 import (
-	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 )
 
 func UploadFile(next gin.HandlerFunc) gin.HandlerFunc {
 	return func (c *gin.Context)  {
-		file, err := c.FormFile("image")
+		file, err := c.FormFile("thumbnail")
 		if err != nil{
 			c.JSON(http.StatusBadRequest, err.Error())
 			return
@@ -37,10 +35,10 @@ func UploadFile(next gin.HandlerFunc) gin.HandlerFunc {
 		}
 		data := tempFile.Name()
 
-		update := strings.Split(data, "\\")[1]
-		fmt.Println(update)
+		// update := strings.Split(data, "\\")[1]
+		// fmt.Println(update)
 
-		c.Set("dataFile", update)
+		c.Set("dataFile", data)
 		next(c)
 	}
 }
