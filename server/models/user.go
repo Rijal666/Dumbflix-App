@@ -9,6 +9,20 @@ type User struct {
 	Phone    string `json:"phone" gorm:"type: varchar(255)"`
 	Gender   string `json:"gender" gorm:"type: varchar(255)"`
 	Address  string `json:"address" gorm:"type: varchar(255)"`
-	Status   bool   `json:"status" gorm:"type: bool"`
+	Status   string `json:"status" gorm:"type: varchar(255)"`
 	Image    string `json:"image" form:"image" gorm:"type: varchar(255)"`
+}
+
+type UserResponses struct {
+	ID       int    `json:"id"`
+	Fullname string `json:"fullname"`
+	Email    string `json:"email"`
+	Phone    string `json:"phone"`
+	Gender   string `json:"gender"`
+	Address  string `json:"address"`
+	Status   string `json:"status"`
+}
+
+func (UserResponses) TableName() string {
+	return "users"
 }

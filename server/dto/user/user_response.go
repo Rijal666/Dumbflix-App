@@ -4,7 +4,7 @@ type UserResponse struct {
 	ID       int    `json:"id"`
 	Fullname string `json:"fullname"`
 	Email    string `json:"email"`
-	Status   bool   `json:"status"`
+	Status   string `json:"status"`
 	Gender   string `json:"gender"`
 	Phone    string `json:"phone"`
 	Address  string `json:"address"`

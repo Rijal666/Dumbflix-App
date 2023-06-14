@@ -12,6 +12,7 @@ func RunAutoMigrate() {
 		&models.Category{},
 		&models.Film{},
 		&models.Episode{},
+		&models.Transaction{},
 	
 	)
 	if err != nil {
