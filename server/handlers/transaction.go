@@ -54,26 +54,22 @@ func (h *handlerTransaction) GetTransaction(c *gin.Context) {
 }
 
 func (h *handlerTransaction) CreateTransaction(c *gin.Context) {
-	userLogin := c.MustGet("userLogin")
-	userId := userLogin.(jwt.MapClaims)["id"].(float64)
-	price, _ := strconv.Atoi(c.PostForm("price"))
-
-	request := transactionsdto.TransactionRequest{
-		Status: c.PostForm("status"),
-		Price: price,
-		UserId: int(userId),
-	}
+	
+	
+	request := new(transactionsdto.TransactionRequest)
 	if err := c.Bind(request); err != nil {
 		c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 		return
 	}
-
+	
 	validation := validator.New()
 	err := validation.Struct(request)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, dto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
 		return
 	}
+	userLogin := c.MustGet("userLogin")
+	userId := userLogin.(jwt.MapClaims)["id"].(float64)
 
 
 	Startdate := time.Now()
@@ -93,10 +89,10 @@ func (h *handlerTransaction) CreateTransaction(c *gin.Context) {
 
 	transaction := models.Transaction{
 		// ID:        transactionId,
-		UserId: request.UserId,
-		User: ConvertResponseUser(user),
 		StartDate: Startdate,
 		DueDate:   Duedate,
+		UserId: int(userId),
+		User: ConvertResponseUser(user),
 		Price:     request.Price,
 		Status:    request.Status,
 	}
