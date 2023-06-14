@@ -134,7 +134,7 @@ func (h *handlerTransaction) CreateTransaction(c *gin.Context) {
 	// //3. Execute request create Snap transaction to Midtrans Snap API
 	// snapResp, _ := s.CreateTransaction(req)
 
-	c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Data: dataTransactions})
+	c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Data: ConvertTransactionResponse(dataTransactions)})
 	return
 }
 
@@ -233,6 +233,19 @@ func (h *handlerTransaction) CreateTransaction(c *gin.Context) {
 // 		log.Println("Mail sent! to " + CONFIG_AUTH_EMAIL)
 // 	}
 // }
+
+
+func ConvertTransactionResponse(c models.Transaction) models.TransactionResponse{
+	return models.TransactionResponse{
+		ID: c.ID,
+StartDate: c.StartDate,
+DueDate: c.DueDate,
+UserID: c.UserId,
+User: c.User,
+Status: c.Status,
+Price: c.Price,
+	}
+}
 
 func ConvertResponseUser(u models.User) models.UserResponses  {
 	return models.UserResponses{
