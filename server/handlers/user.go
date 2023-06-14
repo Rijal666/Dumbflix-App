@@ -58,7 +58,7 @@ func (h *handler) GetUser(c *gin.Context) {
 }
 
 func (h *handler) UpdateUser(c *gin.Context){
-		c.Header("content-Type", "multipart/form-data")
+	c.Header("Content-Type", "multipart/form-data")
 
 	dataFile := c.MustGet("dataFile2").(string)
 		fmt.Println("this is data file", dataFile)
