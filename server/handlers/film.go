@@ -142,8 +142,8 @@ func (h *handlerFilm) CreateFilm(c *gin.Context){
 		}
 }
 
-func convertResponseFilm(film models.Film)filmdto.FilmResponse{
-	return filmdto.FilmResponse{
+func convertResponseFilm(film models.Film) models.Film{
+	return models.Film{
 		ID: film.ID,
 		Title: film.Title,
 		ThumbnailFilm: film.ThumbnailFilm,
