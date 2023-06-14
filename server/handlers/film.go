@@ -138,7 +138,7 @@ func (h *handlerFilm) CreateFilm(c *gin.Context){
 			return
 		}
 
-		c.JSON(http.StatusOK, resultdto.SuccessResult{Status: http.StatusOK, Message: "data udah nambah nyeet",Data: convertResponseFilm(data)})
+		c.JSON(http.StatusOK, resultdto.SuccessResult{Status: http.StatusOK, Message: "data udah nambah nyeet",Data: data})
 		return
 
 		} else {
@@ -147,17 +147,17 @@ func (h *handlerFilm) CreateFilm(c *gin.Context){
 		}
 }
 
-func convertResponseFilm(film models.Film) models.Film{
-	return models.Film{
-		ID: film.ID,
-		Title: film.Title,
-		ThumbnailFilm: film.ThumbnailFilm,
-		Year: film.Year,
-		CategoryId: film.CategoryId,
-		Category: film.Category,
-		Description: film.Description,
-	}
-}
+// func convertResponseFilm(film models.Film) models.Film{
+// 	return models.Film{
+// 		ID: film.ID,
+// 		Title: film.Title,
+// 		ThumbnailFilm: film.ThumbnailFilm,
+// 		Year: film.Year,
+// 		CategoryId: film.CategoryId,
+// 		Category: film.Category,
+// 		Description: film.Description,
+// 	}
+// }
 
 // func ConvertCategoryResponse(c models.Category) models.CategoryResponse {
 // 	return models.CategoryResponse{
