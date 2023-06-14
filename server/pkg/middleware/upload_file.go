@@ -22,7 +22,7 @@ func UploadFile(next gin.HandlerFunc) gin.HandlerFunc {
 		}
 		defer src.Close()
 
-		tempFile, err := ioutil.TempFile("Dumbflix", "thumbnail-*.png")
+		tempFile, err := ioutil.TempFile("uploads", "image-*.png")
 		if err != nil {
 			c.JSON(http.StatusBadRequest, err.Error())
 			return
