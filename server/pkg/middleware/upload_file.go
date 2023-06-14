@@ -35,7 +35,7 @@ func UploadFile(next gin.HandlerFunc) gin.HandlerFunc {
 		cld, _ := cloudinary.NewFromParams(CLOUD_NAME, API_KEY, API_SECRET)
 	
 		// Upload file to Cloudinary ...
-		resp, err := cld.Upload.Upload(ctx, src, uploader.UploadParams{Folder: "uploads"})
+		resp, err := cld.Upload.Upload(ctx, src, uploader.UploadParams{Folder: "Dumbflix"})
 	
 		if err != nil {
 			fmt.Println(err.Error())
