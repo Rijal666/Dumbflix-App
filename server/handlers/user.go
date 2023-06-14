@@ -60,7 +60,7 @@ func (h *handler) GetUser(c *gin.Context) {
 func (h *handler) UpdateUser(c *gin.Context){
 	c.Header("Content-Type", "multipart/form-data")
 
-	dataFile := c.MustGet("dataFile2").(string)
+	dataFile := c.MustGet("dataFile").(string)
 		fmt.Println("this is data file", dataFile)
 	userLogin := c.MustGet("userLogin")
 	userId := userLogin.(jwt.MapClaims)["id"].(float64)
