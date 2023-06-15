@@ -75,10 +75,6 @@ func (h *handler) UpdateUser(c *gin.Context){
 			Thumbnail: dataFile,
 		}
 		
-		if err := c.Bind(request); err != nil {
-			c.JSON(http.StatusBadRequest, resultdto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
-			return
-		}
 		
 		user, err := h.UserRepository.GetUser(int(userId))
 		fmt.Println(user, "inini tood")
