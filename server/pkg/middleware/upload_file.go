@@ -14,7 +14,7 @@ import (
 func UploadFile(next gin.HandlerFunc) gin.HandlerFunc {
 	return func (c *gin.Context)  {
 		file, err := c.FormFile("thumbnail")
-		if file != nil {
+		// if file != nil {
 		if err != nil{
 			c.JSON(http.StatusBadRequest, err.Error())
 			return
@@ -43,6 +43,7 @@ func UploadFile(next gin.HandlerFunc) gin.HandlerFunc {
 		c.Set("dataFile", resp.SecureURL)
 		next(c)
 	}
+}
 		// tempFile, err := ioutil.TempFile("uploads", "image-*.png")
 		// if err != nil {
 		// 	c.JSON(http.StatusBadRequest, err.Error())
@@ -58,5 +59,8 @@ func UploadFile(next gin.HandlerFunc) gin.HandlerFunc {
 
 		// update := strings.Split(data, "\\")[1]
 		// fmt.Println(update)
-	}
-}
+
+// 		c.Set("dataFile", "")
+// 		next(c)
+// 	}
+// }
