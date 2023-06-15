@@ -111,6 +111,7 @@ function Navbars() {
                   <img src="/images/icon.svg" />
                 </Navbar.Brand>
                 <NavDropdown
+                  style={{ backgroundColor: "black" }}
                   title={
                     <img
                       src="/images/blank-profile.png"
@@ -119,7 +120,6 @@ function Navbars() {
                         width: "50px",
                         height: "50px",
                         border: "solid orange",
-                        backgroundColor: "black",
                       }}
                       data-aos="flip-left"
                       data-aos-easing="ease-out-cubic"
@@ -134,7 +134,7 @@ function Navbars() {
                       alt=""
                       style={{ width: "20px" }}
                     />
-                    <span className="ms-3 fw-bold">Film</span>
+                    <span className="ms-3 fw-bold">Fi</span>
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={logout} href="/">
