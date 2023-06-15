@@ -111,7 +111,6 @@ function Navbars() {
                   <img src="/images/icon.svg" />
                 </Navbar.Brand>
                 <NavDropdown
-                  style={{ backgroundColor: "black" }}
                   title={
                     <img
                       src="/images/blank-profile.png"
@@ -128,13 +127,13 @@ function Navbars() {
                     />
                   }
                 >
-                  <NavDropdown.Item href="/IncomeTrip">
+                  <NavDropdown.Item href="/IncomeTrip" className="bg-dark">
                     <img
                       src="/images/film.svg"
                       alt=""
                       style={{ width: "20px" }}
                     />
-                    <span className="ms-3 fw-bold">Fi</span>
+                    <span className="ms-3 fw-bold">Film</span>
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={logout} href="/">
