@@ -6,7 +6,6 @@ import { UserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { API, setAuthToken } from "../config/api";
 import Swal from "sweetalert2";
-
 import { useState, useContext, useEffect } from "react";
 import ModalRegister from "../components/ModalRegister";
 
@@ -120,6 +119,7 @@ function Navbars() {
                         width: "50px",
                         height: "50px",
                         border: "solid orange",
+                        backgroundColor: "black",
                       }}
                       data-aos="flip-left"
                       data-aos-easing="ease-out-cubic"

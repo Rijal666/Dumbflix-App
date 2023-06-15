@@ -43,7 +43,7 @@ export const Login = (props) => {
       setAuthToken(response.data.data.token);
 
       if (response.data.data.is_admin === true) {
-        navigate("/Income");
+        navigate("/");
       } else {
         navigate("/");
       }
