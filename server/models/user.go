@@ -1,16 +1,16 @@
 package models
 
 type User struct {
-	ID       int    `json:"id" gorm:"primary_key:auto_increment"`
-	IsAdmin  bool   `json:"is_admin" gorm:"type: bool"`
-	Fullname string `json:"fullname" gorm:"type: varchar(255)"`
-	Email    string `json:"email" gorm:"type: varchar(255)"`
-	Password string `json:"password" gorm:"type: varchar(255)"`
-	Phone    string `json:"phone" gorm:"type: varchar(255)"`
-	Gender   string `json:"gender" gorm:"type: varchar(255)"`
-	Address  string `json:"address" gorm:"type: varchar(255)"`
-	Status   string `json:"status" gorm:"type: varchar(255)"`
-	Image    string `json:"image" form:"image" gorm:"type: varchar(255)"`
+	ID        int    `json:"id" gorm:"primary_key:auto_increment"`
+	IsAdmin   bool   `json:"is_admin" gorm:"type: bool"`
+	Fullname  string `json:"fullname" gorm:"type: varchar(255)"`
+	Email     string `json:"email" gorm:"type: varchar(255)"`
+	Password  string `json:"password" gorm:"type: varchar(255)"`
+	Phone     string `json:"phone" gorm:"type: varchar(255)"`
+	Gender    string `json:"gender" gorm:"type: varchar(255)"`
+	Address   string `json:"address" gorm:"type: varchar(255)"`
+	Status    string `json:"status" gorm:"type: varchar(255)"`
+	Thumbnail string `json:"thumbnail" form:"thumbnail" gorm:"type: varchar(255)"`
 }
 
 type UserResponses struct {

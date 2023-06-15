@@ -1,6 +1,13 @@
 /** @format */
 
-import { Container, Button, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import {
+  Container,
+  Button,
+  Nav,
+  Navbar,
+  NavDropdown,
+  Dropdown,
+} from "react-bootstrap";
 import ModalLogin from "../components/ModalLogin";
 import { UserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
@@ -111,6 +118,7 @@ function Navbars() {
                   <img src="/images/icon.svg" />
                 </Navbar.Brand>
                 <NavDropdown
+                  menuVariant="dark"
                   title={
                     <img
                       src="/images/blank-profile.png"
@@ -123,11 +131,11 @@ function Navbars() {
                       data-aos="flip-left"
                       data-aos-easing="ease-out-cubic"
                       data-aos-duration="2000"
-                      className="rounded-circle"
+                      className="rounded-circle me-4"
                     />
                   }
                 >
-                  <NavDropdown.Item href="/IncomeTrip" className="bg-dark">
+                  <NavDropdown.Item href="/IncomeTrip">
                     <img
                       src="/images/film.svg"
                       alt=""
@@ -153,23 +161,9 @@ function Navbars() {
                 <Nav>
                   <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                      <Nav.Link href="#features">Home</Nav.Link>
-                      <Nav.Link href="#pricing">TV Show</Nav.Link>
-                      <NavDropdown title="Movies" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">
-                          Movies
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">
-                          Another action
-                        </NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">
-                          Something
-                        </NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">
-                          Separated link
-                        </NavDropdown.Item>
-                      </NavDropdown>
+                      <Nav.Link href="/">Home</Nav.Link>
+                      <Nav.Link href="/Series">TV Series</Nav.Link>
+                      <Nav.Link href="/Movies">Movies</Nav.Link>
                     </Nav>
                   </Navbar.Collapse>
                 </Nav>
@@ -182,6 +176,7 @@ function Navbars() {
                 <Nav>
                   <Navbar.Collapse id="responsive-navbar-nav">
                     <NavDropdown
+                      menuVariant="dark"
                       title={
                         <img
                           // src={state.user.image ? state.user.image : ImgProfile}
@@ -191,7 +186,7 @@ function Navbars() {
                             height: "50px",
                             border: "solid orange",
                           }}
-                          className="rounded-circle"
+                          className="rounded-circle me-2"
                         />
                       }
                     >
@@ -232,23 +227,9 @@ function Navbars() {
               <Nav>
                 <Navbar.Collapse id="responsive-navbar-nav">
                   <Nav className="me-auto">
-                    <Nav.Link href="#features">Home</Nav.Link>
-                    <Nav.Link href="#pricing">TV Show</Nav.Link>
-                    <NavDropdown title="Movies" id="collasible-nav-dropdown">
-                      <NavDropdown.Item href="#action/3.1">
-                        Movies
-                      </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.2">
-                        Another action
-                      </NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.3">
-                        Something
-                      </NavDropdown.Item>
-                      <NavDropdown.Divider />
-                      <NavDropdown.Item href="#action/3.4">
-                        Separated link
-                      </NavDropdown.Item>
-                    </NavDropdown>
+                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="/Series">TV Series</Nav.Link>
+                    <Nav.Link href="/Movies">Movies</Nav.Link>
                   </Nav>
                 </Navbar.Collapse>
               </Nav>

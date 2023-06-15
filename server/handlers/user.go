@@ -72,7 +72,7 @@ func (h *handler) UpdateUser(c *gin.Context){
 			Gender: c.Request.FormValue("gender"),
 			Phone: c.Request.FormValue("phone"),
 			Address: c.Request.FormValue("address"),
-			Image: dataFile,
+			Thumbnail: dataFile,
 		}
 		
 		if err := c.Bind(request); err != nil {
@@ -111,8 +111,8 @@ func (h *handler) UpdateUser(c *gin.Context){
 		if request.Address != "" {
 			user.Address = request.Address
 		}
-		if request.Image != "" {
-			user.Image = request.Image
+		if request.Thumbnail != "" {
+			user.Thumbnail = request.Thumbnail
 		}
 
 		data, err := h.UserRepository.UpdateUser(user)
@@ -134,7 +134,7 @@ func  convertResponse(u models.User)  userdto.UserResponse{
 		Gender: u.Gender,
 		Phone: u.Phone,
 		Address: u.Address,
-		Image: u.Image,
+		Thumbnail: u.Thumbnail,
 	}
 	
 }
