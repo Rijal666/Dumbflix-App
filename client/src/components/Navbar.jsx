@@ -2,12 +2,20 @@
 
 import { Container, Button, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import ModalLogin from "../components/ModalLogin";
-import { useState } from "react";
+import { UserContext } from "../context/userContext";
+import { useNavigate } from "react-router-dom";
+import { API, setAuthToken } from "../config/api";
+import Swal from "sweetalert2";
+
+import { useState, useContext, useEffect } from "react";
 import ModalRegister from "../components/ModalRegister";
 
 function Navbars() {
+  let navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+  const [state, dispatch] = useContext(UserContext);
 
   const handleClose = () => {
     setShowLogin(false);
@@ -24,6 +32,62 @@ function Navbars() {
     setShowRegister(true);
   };
 
+  useEffect(() => {
+    // Redirect auth but just when isLoading is false
+    if (!isLoading) {
+      if (state.isLogin === false) {
+        navigate("/");
+      }
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+      checkUser();
+    } else {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const checkUser = async () => {
+    try {
+      const response = await API.get("/check-auth");
+      console.log("check user success : ", response);
+      // get user data
+      let payload = response.data.data;
+      // get token from localstorage
+      payload.token = localStorage.token;
+      // send data to useContext
+      dispatch({
+        type: "USER_SUCCESS",
+        payload,
+      });
+      setIsLoading(false);
+    } catch (error) {
+      console.log("check user failed : ", error);
+      dispatch({
+        type: "AUTH_ERROR",
+      });
+      setIsLoading(false);
+    }
+  };
+
+  const logout = () => {
+    console.log(state);
+    dispatch({
+      type: "LOGOUT",
+    });
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Logout Success",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    navigate("/");
+  };
+
   return (
     <>
       <ModalLogin
@@ -38,52 +102,186 @@ function Navbars() {
       />
       <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
         <Container>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Nav>
-            <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link href="#features">Home</Nav.Link>
-                <Nav.Link href="#pricing">TV Show</Nav.Link>
-                <NavDropdown title="Movies" id="collasible-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Movies</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    Something
+          {state.isLogin === true ? (
+            state.user.is_admin === true ? (
+              <>
+                <Navbar.Brand
+                  href="#home"
+                  className="d-flex justify-content-center"
+                >
+                  <img src="/images/icon.svg" />
+                </Navbar.Brand>
+                <NavDropdown
+                  title={
+                    <img
+                      src="/images/blank-profile.png"
+                      alt=""
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        border: "solid orange",
+                      }}
+                      data-aos="flip-left"
+                      data-aos-easing="ease-out-cubic"
+                      data-aos-duration="2000"
+                      className="rounded-circle"
+                    />
+                  }
+                >
+                  <NavDropdown.Item href="/IncomeTrip">
+                    <img
+                      src="/images/film.svg"
+                      alt=""
+                      style={{ width: "20px" }}
+                    />
+                    <span className="ms-3 fw-bold">Film</span>
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
+                  <NavDropdown.Item onClick={logout} href="/">
+                    {" "}
+                    <img
+                      src="/images/logout.svg"
+                      alt=""
+                      style={{ width: "20px" }}
+                    />
+                    <span className="ms-3 fw-bold">Logout</span>
                   </NavDropdown.Item>
                 </NavDropdown>
-              </Nav>
-            </Navbar.Collapse>
-          </Nav>
-          <Navbar.Brand href="#home" className="d-flex justify-content-center">
-            <img src="/images/icon.svg" />
-          </Navbar.Brand>
-          <Nav>
-            <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="gap-4">
-                <Button
-                  variant="light"
-                  color="danger"
-                  className="text-danger fw-bold"
-                  onClick={handleShowRegister}
+              </>
+            ) : (
+              <>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Nav>
+                  <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="me-auto">
+                      <Nav.Link href="#features">Home</Nav.Link>
+                      <Nav.Link href="#pricing">TV Show</Nav.Link>
+                      <NavDropdown title="Movies" id="collasible-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1">
+                          Movies
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.2">
+                          Another action
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.3">
+                          Something
+                        </NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="#action/3.4">
+                          Separated link
+                        </NavDropdown.Item>
+                      </NavDropdown>
+                    </Nav>
+                  </Navbar.Collapse>
+                </Nav>
+                <Navbar.Brand
+                  href="#home"
+                  className="d-flex justify-content-center"
                 >
-                  Register
-                </Button>
-                <Button
-                  variant="danger"
-                  className="fw-bold px-4"
-                  onClick={handleShowLogin}
-                >
-                  Login
-                </Button>
+                  <img src="/images/icon.svg" />
+                </Navbar.Brand>
+                <Nav>
+                  <Navbar.Collapse id="responsive-navbar-nav">
+                    <NavDropdown
+                      title={
+                        <img
+                          // src={state.user.image ? state.user.image : ImgProfile}
+                          alt=""
+                          style={{
+                            width: "50px",
+                            height: "50px",
+                            border: "solid orange",
+                          }}
+                          className="rounded-circle"
+                        />
+                      }
+                    >
+                      <NavDropdown.Item href="/Profile">
+                        <img
+                          src="/images/user.svg"
+                          alt=""
+                          style={{ width: "20px" }}
+                        />
+                        <span className="ms-3 fw-bold">Profile</span>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/Payment">
+                        <img
+                          src="/images/bill.svg"
+                          alt=""
+                          style={{ width: "20px" }}
+                        />
+                        <span className="ms-3 fw-bold">pay</span>
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item onClick={logout} href="/">
+                        {" "}
+                        <img
+                          src="/images/logout.svg"
+                          alt=""
+                          style={{ width: "20px" }}
+                        />
+                        <span className="ms-3 fw-bold">Logout</span>
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </Navbar.Collapse>
+                </Nav>
+              </>
+            )
+          ) : (
+            <>
+              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+              <Nav>
+                <Navbar.Collapse id="responsive-navbar-nav">
+                  <Nav className="me-auto">
+                    <Nav.Link href="#features">Home</Nav.Link>
+                    <Nav.Link href="#pricing">TV Show</Nav.Link>
+                    <NavDropdown title="Movies" id="collasible-nav-dropdown">
+                      <NavDropdown.Item href="#action/3.1">
+                        Movies
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="#action/3.2">
+                        Another action
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="#action/3.3">
+                        Something
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item href="#action/3.4">
+                        Separated link
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </Nav>
+                </Navbar.Collapse>
               </Nav>
-            </Navbar.Collapse>
-          </Nav>
+              <Navbar.Brand
+                href="#home"
+                className="d-flex justify-content-center"
+              >
+                <img src="/images/icon.svg" />
+              </Navbar.Brand>
+              <Nav>
+                <Navbar.Collapse id="responsive-navbar-nav">
+                  <Nav className="gap-4">
+                    <Button
+                      variant="light"
+                      color="danger"
+                      className="text-danger fw-bold"
+                      onClick={handleShowRegister}
+                    >
+                      Register
+                    </Button>
+                    <Button
+                      variant="danger"
+                      className="fw-bold px-4"
+                      onClick={handleShowLogin}
+                    >
+                      Login
+                    </Button>
+                  </Nav>
+                </Navbar.Collapse>
+              </Nav>
+            </>
+          )}
         </Container>
       </Navbar>
     </>
