@@ -50,7 +50,7 @@ func (h *handlerTransaction) GetTransaction(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Message: "Transaction data successfully obtained", Data: transactions})
-	return
+	
 }
 
 func (h *handlerTransaction) CreateTransaction(c *gin.Context) {
@@ -131,7 +131,6 @@ func (h *handlerTransaction) CreateTransaction(c *gin.Context) {
 	// snapResp, _ := s.CreateTransaction(req)
 
 	c.JSON(http.StatusOK, dto.SuccessResult{Status: http.StatusOK, Data: ConvertTransactionResponse(dataTransactions)})
-	return
 }
 
 // func (h *handlerTransaction) Notification(c echo.Context) error {
