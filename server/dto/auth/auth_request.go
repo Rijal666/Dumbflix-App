@@ -8,7 +8,7 @@ type AuthRequset struct {
 	Gender    string `json:"gender" validate:"required"`
 	Phone     string `json:"phone" validate:"required"`
 	Address   string `json:"address" validate:"required"`
-	Thumbnail string `json:"thumbnail"`
+	Thumbnail string `json:"thumbnail" form:"thumbnail"`
 }
 
 type LoginRequest struct {
