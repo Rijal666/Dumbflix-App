@@ -10,11 +10,11 @@ type CreateUserRequest struct {
 }
 
 type UpdateUserRequest struct {
-	Fullname  string `json:"fullname" form:"fullname"`
-	Email     string `json:"email" form:"email"`
-	Password  string `json:"password" form:"password"`
-	Gender    string `josn:"gender" form:"gender"`
-	Phone     string `json:"phone" form:"phone"`
-	Address   string `json:"address" form:"address"`
-	Thumbnail string `json:"thumbnail" form:"thumbnail"`
+	Fullname  string `json:"fullname"`
+	Email     string `json:"email"`
+	Password  string `json:"password"`
+	Gender    string `josn:"gender"`
+	Phone     string `json:"phone"`
+	Address   string `json:"address"`
+	Thumbnail string `json:"thumbnail"`
 }
