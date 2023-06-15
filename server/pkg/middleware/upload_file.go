@@ -58,7 +58,5 @@ func UploadFile(next gin.HandlerFunc) gin.HandlerFunc {
 
 		// update := strings.Split(data, "\\")[1]
 		// fmt.Println(update)
-
-		next(c)
 	}
 }
