@@ -36,9 +36,9 @@ func UploadFile(next gin.HandlerFunc) gin.HandlerFunc {
 		}
 
 		data := tempFile.Name()
-		filename := data[8:] // split uploads/
+		// filename := data[8:] // split uploads/
 
-		c.Set("dataFile", filename)
+		c.Set("dataFile", data)
 		next(c)
 	}
 }
