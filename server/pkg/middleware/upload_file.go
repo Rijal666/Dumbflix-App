@@ -10,7 +10,7 @@ import (
 
 func UploadFile(next gin.HandlerFunc) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		file, err := c.FormFile("thumbnail")
+		file, err := c.FormFile("image")
 		if err != nil {
 			c.JSON(http.StatusBadRequest, err)
 			return
