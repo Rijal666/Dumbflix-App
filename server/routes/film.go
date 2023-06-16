@@ -14,7 +14,7 @@ func FilmRoutes(r *gin.RouterGroup) {
 	categoryRepository := repositories.RepositoryCategory(mysql.DB)
 	h := handlers.HandlerFilm(filmRepository, categoryRepository)
 
-	r.GET("/films", middleware.Auth(h.FindFilms))
+	r.GET("/films", h.FindFilms)
 	r.GET("/film/:id", h.GetFilm)
 	r.POST("/film", middleware.Auth(middleware.UploadFile(h.CreateFilm)))
 }

@@ -26,10 +26,7 @@ func HandlerFilm(FilmRepository repositories.FilmRepository, CategoryRepository 
 }
 
 func (h *handlerFilm) FindFilms(c *gin.Context){
-	userLogin := c.MustGet("userLogin")
-	userAdmin := userLogin.(jwt.MapClaims)["is_admin"].(bool)
 
-	if userAdmin {
 		films, err := h.FilmRepository.FindFilms()
 		if  err != nil {
 			c.JSON(http.StatusBadRequest, resultdto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
@@ -43,12 +40,6 @@ func (h *handlerFilm) FindFilms(c *gin.Context){
 		} else {
 			c.JSON(http.StatusBadRequest, resultdto.ErrorResult{Status: http.StatusBadRequest, Message: "Data kosong, tambah dulu nyeet"})
 		}
-
-	} else {
-		c.JSON(http.StatusUnauthorized, resultdto.ErrorResult{Status: http.StatusUnauthorized, Message: "Lu bukan admin nyeet"})
-		return
-	}
-	
 }
 func (h *handlerFilm) GetFilm(c *gin.Context){
 	id, _ := strconv.Atoi(c.Param("id"))
