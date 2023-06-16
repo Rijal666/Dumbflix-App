@@ -13,6 +13,7 @@ import { UserContext } from "../context/userContext";
 import { useNavigate } from "react-router-dom";
 import { API, setAuthToken } from "../config/api";
 import Swal from "sweetalert2";
+import imgProfile from "../assets/image/myProfile.png";
 import { useState, useContext, useEffect } from "react";
 import ModalRegister from "../components/ModalRegister";
 
@@ -135,7 +136,7 @@ function Navbars() {
                     />
                   }
                 >
-                  <NavDropdown.Item href="/IncomeTrip">
+                  <NavDropdown.Item href="/Addfilm">
                     <img
                       src="/images/film.svg"
                       alt=""
@@ -168,7 +169,7 @@ function Navbars() {
                   </Navbar.Collapse>
                 </Nav>
                 <Navbar.Brand
-                  href="#home"
+                  href="/"
                   className="d-flex justify-content-center"
                 >
                   <img src="/images/icon.svg" />
@@ -179,7 +180,11 @@ function Navbars() {
                       menuVariant="dark"
                       title={
                         <img
-                          // src={state.user.image ? state.user.image : ImgProfile}
+                          src={
+                            state.user.thumbnail
+                              ? state.user.thumbnail
+                              : imgProfile
+                          }
                           alt=""
                           style={{
                             width: "50px",
@@ -233,10 +238,7 @@ function Navbars() {
                   </Nav>
                 </Navbar.Collapse>
               </Nav>
-              <Navbar.Brand
-                href="#home"
-                className="d-flex justify-content-center"
-              >
+              <Navbar.Brand href="/" className="d-flex justify-content-center">
                 <img src="/images/icon.svg" />
               </Navbar.Brand>
               <Nav>

@@ -53,6 +53,7 @@ func (h *handlerAuth) Register(c *gin.Context) {
 		Gender: request.Gender,
 		Phone: request.Phone,
 		Address: request.Address,
+		Status: "not active",
 	}
 
 	data, err := h.AuthRepository.Register(user)

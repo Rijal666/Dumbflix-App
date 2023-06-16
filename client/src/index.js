@@ -5,6 +5,7 @@ import ReactDOM from "react-dom/client";
 import { UserContextProvider } from "./context/userContext";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router } from "react-router-dom";
+import "animate.css";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
 
