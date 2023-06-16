@@ -111,21 +111,21 @@ func (h *handlerEpisode) CreateEpisode(c *gin.Context){
 		// 	fmt.Println(err.Error())
 		// }
 
-		filmID, err := h.FilmRepository.GetFilm(request.FilmId)
-			if err != nil {
-				c.JSON(http.StatusInternalServerError, resultdto.ErrorResult{
-					Status:  http.StatusInternalServerError,
-					Message: err.Error(),
-				})
-				fmt.Println("error 1")
-			}	
+		// filmID, err := h.FilmRepository.GetFilm(request.FilmId)
+		// 	if err != nil {
+		// 		c.JSON(http.StatusInternalServerError, resultdto.ErrorResult{
+		// 			Status:  http.StatusInternalServerError,
+		// 			Message: err.Error(),
+		// 		})
+		// 		fmt.Println("error 1")
+		// 	}	
 
 		episode := models.Episode{
 			Title: request.Title,
 			ThumbnailFilm: request.ThumbnailFilm,
 			LinkFilm: request.LinkFilm,
 			FilmId: request.FilmId,
-			Film: ConvertFilmResponse(filmID),
+			// Film: ConvertFilmResponse(filmID),
 		}
 
 		data, err := h.EpisodeRepository.CreateEpisode(episode)
@@ -151,7 +151,7 @@ func convertResponseEpisode(episode models.Episode) episodedto.EpisodeResponse{
 		ThumbnailFilm: episode.ThumbnailFilm,
 		LinkFilm: episode.LinkFilm,
 		FilmId: episode.FilmId,
-		Film: episode.Film,
+		// Film: episode.Film,
 		
 	}
 }
