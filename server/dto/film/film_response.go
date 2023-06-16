@@ -10,4 +10,6 @@ type FilmResponse struct {
 	CategoryId    int    `json:"category_id"`
 	Category      models.CategoryResponse `json:"category"`
 	Description string `json:"description"`
+	EpisodeId int `json:"episode_id"`
+	Episode []models.EpisodeResponse `json:"episode"`
 }

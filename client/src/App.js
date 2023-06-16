@@ -4,7 +4,11 @@ import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import Profile from "./pages/Profile";
 import TVShow from "./pages/TVShow";
+import ListTrans from "./pages/ListTrans";
+import ListFilm from "./pages/ListFilm";
+import Payment from "./pages/Payment";
 import AddFilm from "./pages/AddFilm";
+import Details from "./pages/Detail";
 import { UserContext } from "./context/userContext";
 import { useContext, useEffect, useState } from "react";
 import { setAuthToken, API } from "./config/api";
@@ -75,6 +79,10 @@ function App() {
           <Route path="/Movies" element={<Movies />} />
           <Route path="/Addfilm" element={<AddFilm />} />
           <Route path="/Profile" element={<Profile />} />
+          <Route path="/Payment" element={<Payment />} />
+          <Route path="/ListTrans" element={<ListTrans />} />
+          <Route path="/ListFilms" element={<ListFilm />} />
+          <Route path="/Detail" element={<Details />} />
         </Routes>
       )}
     </>

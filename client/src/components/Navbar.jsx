@@ -136,7 +136,7 @@ function Navbars() {
                     />
                   }
                 >
-                  <NavDropdown.Item href="/Addfilm">
+                  <NavDropdown.Item href="/ListFilms">
                     <img
                       src="/images/film.svg"
                       alt=""

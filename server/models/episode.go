@@ -10,11 +10,10 @@ type Episode struct {
 }
 
 type EpisodeResponse struct {
-	ID            int          `json:"id" gorm:"primary_key:auto_increment"`
-	Title         string       `json:"title"`
-	ThumbnailFilm string       `json:"thumbnail"`
-	LinkFilm      string       `json:"link"`
-	Film          FilmResponse `json:"film"`
+	ID            int    `json:"id" gorm:"primary_key:auto_increment"`
+	Title         string `json:"title"`
+	ThumbnailFilm string `json:"thumbnail"`
+	LinkFilm      string `json:"link"`
 }
 
 func (EpisodeResponse) TableName() string {
