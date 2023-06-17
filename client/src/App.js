@@ -86,7 +86,7 @@ function App() {
           <Route path="/ListFilms" element={<ListFilm />} />
           <Route path="/Detail/:id" element={<Details />} />
           <Route path="/Detailadmin/:id" element={<DetailsAdmin />} />
-          <Route path="/Addepisode" element={<AddEpisode />} />
+          <Route path="/Addepisode/:id" element={<AddEpisode />} />
         </Routes>
       )}
     </>
