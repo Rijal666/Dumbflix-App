@@ -70,12 +70,6 @@ fmt.Println(id)
 
 func (h *handlerEpisode) CreateEpisode(c *gin.Context){
 	c.Header("Content-Type", "multipart/form-data")
-
-
-	userLogin := c.MustGet("userLogin")
-	userAdmin := userLogin.(jwt.MapClaims)["is_admin"].(bool)
-
-	if userAdmin {
 		dataFile := c.MustGet("dataFile").(string)
 	fmt.Println("this is data file", dataFile)
 	filmId, _ := strconv.Atoi(c.Request.FormValue("film_id"))
@@ -137,11 +131,6 @@ func (h *handlerEpisode) CreateEpisode(c *gin.Context){
 
 		c.JSON(http.StatusOK, resultdto.SuccessResult{Status: http.StatusOK, Message: "data udah nambah nyeet",Data: convertResponseEpisode(data)})
 		return
-
-		} else {
-			c.JSON(http.StatusUnauthorized, resultdto.ErrorResult{Status: http.StatusUnauthorized, Message: "Lu bukan admin nyeet"})
-			return
-		}
 }
 
 func convertResponseEpisode(episode models.Episode) episodedto.EpisodeResponse{

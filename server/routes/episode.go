@@ -14,7 +14,7 @@ func EpisodeRoutes(r *gin.RouterGroup) {
 	filmRepository := repositories.RepositoryFilm(mysql.DB)
 	h := handlers.HandlerEpisode( EpisodeRepository, filmRepository)
 
-	r.GET("/episodes", middleware.Auth(h.FindEpisodes))
+	r.GET("/episodes", h.FindEpisodes)
 	r.GET("/episode/:id", h.GetEpisode)
 	r.POST("/episode", middleware.Auth(middleware.UploadFile(h.CreateEpisode)))
 }
