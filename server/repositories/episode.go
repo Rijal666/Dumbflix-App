@@ -24,7 +24,7 @@ func (r *repository) FindEpisodes() ([]models.Episode, error) {
 }
 func (r *repository) GetEpisode(ID int) (models.Episode, error) {
 	var episode models.Episode
-	err := r.db.Preload("Film.Category").First(&episode, ID).Error
+	err := r.db.Preload("Film").Preload("Category").First(&episode, ID).Error
 
 	return episode, err
 }
