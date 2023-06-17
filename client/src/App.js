@@ -8,8 +8,10 @@ import ListTrans from "./pages/ListTrans";
 import ListFilm from "./pages/ListFilm";
 import Payment from "./pages/Payment";
 import AddFilm from "./pages/AddFilm";
+import AddEpisode from "./pages/AddEpisode";
 import Details from "./pages/Detail";
 import { UserContext } from "./context/userContext";
+import DetailsAdmin from "./pages/DetailAdmin";
 import { useContext, useEffect, useState } from "react";
 import { setAuthToken, API } from "./config/api";
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -83,6 +85,8 @@ function App() {
           <Route path="/ListTrans" element={<ListTrans />} />
           <Route path="/ListFilms" element={<ListFilm />} />
           <Route path="/Detail/:id" element={<Details />} />
+          <Route path="/Detailadmin/:id" element={<DetailsAdmin />} />
+          <Route path="/Addepisode" element={<AddEpisode />} />
         </Routes>
       )}
     </>

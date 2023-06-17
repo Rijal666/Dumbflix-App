@@ -7,7 +7,7 @@ type CreateFilmRequest struct {
 	Year             int    `json:"year" form:"year" validate:"required"`
 	CategoryId       int    `json:"category_id" form:"category_id" validate:"required"`
 	Description      string `json:"description" form:"description" validate:"required"`
-	TitleEpisode     string `json:"title_episode" form:"title_episode" validate:"required"`
-	ThumbnailEpisode string `json:"thumbnail_episode" form:"thumbnail_episode" validate:"required"`
+	TitleEpisode     string `json:"title_episode" form:"title_episode"`
+	ThumbnailEpisode string `json:"thumbnail_episode" form:"thumbnail_episode"`
 	Link             string `json:"link_episode" form:"link_episode" validate:"required"`
 }
