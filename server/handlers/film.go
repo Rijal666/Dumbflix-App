@@ -79,7 +79,7 @@ func (h *handlerFilm) CreateFilm(c *gin.Context){
 			CategoryId: CategoryId,
 			Description: c.Request.FormValue("description"),
 			TitleEpisode: c.Request.FormValue("title_episode"),
-			ThumbnailEpisode: c.Request.FormValue("thumbnail_episode"),
+			ThumbnailEpisode: dataFile,
 			Link: c.Request.FormValue("link_episode"),
 		}
 
