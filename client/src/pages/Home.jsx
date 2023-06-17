@@ -2,11 +2,9 @@
 
 import React from "react";
 import Carousel from "../components/Carousel";
-import CardMovie from "../components/CardMovie";
 import { useQuery } from "react-query";
 import { API } from "../config/api";
 import { Container, Card, Row, Col, NavLink } from "react-bootstrap";
-import CardTV from "../components/CardTV";
 import Navbars from "../components/Navbar";
 
 export default function Home() {
@@ -29,7 +27,7 @@ export default function Home() {
       <Carousel />
       <Container>
         <Col style={{ margin: "200px 0" }} className="mb-5">
-          <h1 className="text-light fw-bold">Terbaru</h1>
+          <h1 className="text-light fw-bold">Film Terbaru</h1>
         </Col>
         <div
           style={{
@@ -55,6 +53,7 @@ export default function Home() {
                     src={film?.thumbnail}
                     width="100px"
                     height="300px"
+                    style={{ objectFit: "cover" }}
                   />
                   <Card.Body>
                     <Card.Title className="text-light fw-bold">

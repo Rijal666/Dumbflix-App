@@ -78,6 +78,9 @@ func (h *handlerFilm) CreateFilm(c *gin.Context){
 			Year: Year,
 			CategoryId: CategoryId,
 			Description: c.Request.FormValue("description"),
+			TitleEpisode: c.Request.FormValue("title_episode"),
+			ThumbnailEpisode: c.Request.FormValue("thumbnail_episode"),
+			Link: c.Request.FormValue("link_episode"),
 		}
 
 
@@ -120,6 +123,9 @@ func (h *handlerFilm) CreateFilm(c *gin.Context){
 			CategoryId: request.CategoryId,
 			Category: ConvertCategoryResponse(categoryId),
 			Description: request.Description,
+			TitleEpisode: request.TitleEpisode,
+			ThumbnailEpisode: request.ThumbnailEpisode,
+			Link: request.Link,
 		}
 
 		data, err := h.FilmRepository.CreateFilm(film)
@@ -147,6 +153,9 @@ func convertResponseFilm(film models.Film) filmdto.FilmResponse{
 		CategoryId: film.CategoryId,
 		Category: film.Category,
 		Description: film.Description,
+		TitleEpisode: film.TitleEpisode,
+		ThumbnailEpisode: film.ThumbnailEpisode,
+		Link: film.Link,
 	}
 }
 

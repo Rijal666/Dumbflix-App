@@ -67,7 +67,7 @@ function App() {
           style={{ width: "100vw", height: "100vh" }}
         >
           <img
-            src="/images/xnxx.png"
+            src="/images/icon.svg"
             alt="Dewetour"
             className="animate__heartBeat"
           />
@@ -82,7 +82,7 @@ function App() {
           <Route path="/Payment" element={<Payment />} />
           <Route path="/ListTrans" element={<ListTrans />} />
           <Route path="/ListFilms" element={<ListFilm />} />
-          <Route path="/Detail" element={<Details />} />
+          <Route path="/Detail/:id" element={<Details />} />
         </Routes>
       )}
     </>
