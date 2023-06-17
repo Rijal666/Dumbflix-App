@@ -26,10 +26,7 @@ func HandlerEpisode(EpisodeRepository repositories.EpisodeRepository, FilmReposi
 }
 
 func (h *handlerEpisode) FindEpisodes(c *gin.Context){
-	userLogin := c.MustGet("userLogin")
-	userAdmin := userLogin.(jwt.MapClaims)["is_admin"].(bool)
 
-	if userAdmin {
 		episodes, err := h.EpisodeRepository.FindEpisodes()
 		if  err != nil {
 			c.JSON(http.StatusBadRequest, resultdto.ErrorResult{Status: http.StatusBadRequest, Message: err.Error()})
@@ -43,11 +40,6 @@ func (h *handlerEpisode) FindEpisodes(c *gin.Context){
 		} else {
 			c.JSON(http.StatusBadRequest, resultdto.ErrorResult{Status: http.StatusBadRequest, Message: "Data kosong, tambah dulu nyeet"})
 		}
-
-	} else {
-		c.JSON(http.StatusUnauthorized, resultdto.ErrorResult{Status: http.StatusUnauthorized, Message: "Lu bukan admin nyeet"})
-		return
-	}
 	
 }
 func (h *handlerEpisode) GetEpisode(c *gin.Context){
@@ -70,6 +62,12 @@ fmt.Println(id)
 
 func (h *handlerEpisode) CreateEpisode(c *gin.Context){
 	c.Header("Content-Type", "multipart/form-data")
+
+
+	userLogin := c.MustGet("userLogin")
+	userAdmin := userLogin.(jwt.MapClaims)["is_admin"].(bool)
+
+	if userAdmin {
 		dataFile := c.MustGet("dataFile").(string)
 	fmt.Println("this is data file", dataFile)
 	filmId, _ := strconv.Atoi(c.Request.FormValue("film_id"))
@@ -131,6 +129,11 @@ func (h *handlerEpisode) CreateEpisode(c *gin.Context){
 
 		c.JSON(http.StatusOK, resultdto.SuccessResult{Status: http.StatusOK, Message: "data udah nambah nyeet",Data: convertResponseEpisode(data)})
 		return
+
+		} else {
+			c.JSON(http.StatusUnauthorized, resultdto.ErrorResult{Status: http.StatusUnauthorized, Message: "Lu bukan admin nyeet"})
+			return
+		}
 }
 
 func convertResponseEpisode(episode models.Episode) episodedto.EpisodeResponse{
