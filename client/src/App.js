@@ -8,6 +8,7 @@ import ListTrans from "./pages/ListTrans";
 import ListFilm from "./pages/ListFilm";
 import Payment from "./pages/Payment";
 import AddFilm from "./pages/AddFilm";
+import DetailsEpisode from "./pages/DetailEpisode";
 import AddEpisode from "./pages/AddEpisode";
 import Details from "./pages/Detail";
 import { UserContext } from "./context/userContext";
@@ -86,6 +87,7 @@ function App() {
           <Route path="/ListFilms" element={<ListFilm />} />
           <Route path="/Detail/:id" element={<Details />} />
           <Route path="/Detailadmin/:id" element={<DetailsAdmin />} />
+          <Route path="/Detailepisode/:id" element={<DetailsEpisode />} />
           <Route path="/Addepisode/:id" element={<AddEpisode />} />
         </Routes>
       )}
