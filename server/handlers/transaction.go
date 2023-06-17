@@ -72,8 +72,7 @@ func (h *handlerTransaction) CreateTransaction(c *gin.Context) {
 	userId := userLogin.(jwt.MapClaims)["id"].(float64)
 
 
-	Startdate := time.Now()
-	Duedate := time.Now().Add(time.Hour * 24 * 30)
+	currentTime := time.Now()
 
 	// // Create Unique Transaction Id ...
 	// var transactionIsMatch = false
@@ -89,12 +88,16 @@ func (h *handlerTransaction) CreateTransaction(c *gin.Context) {
 
 	transaction := models.Transaction{
 		// ID:        transactionId,
-		StartDate: Startdate,
-		DueDate:   Duedate,
+		StartDate: currentTime,
+		DueDate:   currentTime.Add(5 * time.Second),
 		UserId: int(userId),
 		User: ConvertResponseUser(user),
 		Price:     request.Price,
-		Status:    request.Status,
+		Status:    "Active",
+	}
+
+	if currentTime.After(transaction.DueDate) {
+		transaction.Status = "Inactive"
 	}
 
 	dataTransactions, err := h.TransactionRepository.CreateTransaction(transaction)
