@@ -89,10 +89,10 @@ func (h *handlerTransaction) CreateTransaction(c *gin.Context) {
 	transaction := models.Transaction{
 		// ID:        transactionId,
 		StartDate: currentTime,
-		DueDate:   currentTime.Add(5 * time.Second),
+		DueDate:   currentTime.Add(30 * 24 * time.Hour),
 		UserId: int(userId),
 		User: ConvertResponseUser(user),
-		Price:     request.Price,
+		Price:     50000,
 		Status:    "Active",
 	}
 
