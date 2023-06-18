@@ -17,4 +17,5 @@ func TransactionRoutes(r *gin.RouterGroup) {
 	r.GET("/transactions", middleware.Auth(h.FindTransactions))
 	r.GET("/transaction/:id", h.GetTransaction)
 	r.POST("/transaction", middleware.Auth(h.CreateTransaction))
+	r.POST("/notification", h.Notification)
 }
