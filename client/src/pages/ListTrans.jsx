@@ -2,9 +2,17 @@
 
 import React from "react";
 import { Container, Table } from "react-bootstrap";
+import { useQuery } from "react-query";
 import Navbars from "../components/Navbar";
+import { API } from "../config/api";
 
 export default function ListTrans() {
+  let { data: trans } = useQuery("transactionsCache", async () => {
+    const response = await API.get("/transactions");
+    return response.data.data;
+  });
+
+  console.log(trans, "kontool");
   return (
     <div>
       <Navbars />
@@ -16,19 +24,23 @@ export default function ListTrans() {
               <tr>
                 <th>No</th>
                 <th>Users</th>
+                <th>start date</th>
+                <th>due date</th>
                 <th>Status User</th>
               </tr>
             </thead>
             <tbody>
-              {/* {transactions?.map((item, index) => {
-                return ( */}
-              <tr>
-                <td>1</td>
-                <td>test</td>
-                <td>test</td>
-              </tr>
-              {/* );
-              })} */}
+              {trans?.map((item, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{item?.id}</td>
+                    <td>{item?.user?.fullname}</td>
+                    <td>{item?.startdate}</td>
+                    <td>{item?.duedate}</td>
+                    <td>{item?.user?.status}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </Table>
         </div>
