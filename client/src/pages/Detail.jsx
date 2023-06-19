@@ -34,7 +34,7 @@ export default function Details(props) {
       <Navbars />
       <div>
         <div>
-          {state?.user?.status === "atived" ? (
+          {state?.user?.status === "aktived" ? (
             <iframe
               width="100%"
               height="520"
