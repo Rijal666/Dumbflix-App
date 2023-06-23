@@ -45,7 +45,7 @@ export default function Details(props) {
           ) : (
             <div className="my-5">
               <h1 className="text-center mb-5">
-                miskin ya belom upgrade ke premium
+                Ubah ke premium agar anda dapat menikmati film kami
               </h1>
               <div className="d-flex justify-content-center ">
                 <Button href="/Payment" className="btn btn-danger">

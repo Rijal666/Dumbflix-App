@@ -1,5 +1,6 @@
 /** @format */
 
+import { Button } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 
 function IndividualIntervalsExample() {
@@ -13,8 +14,18 @@ function IndividualIntervalsExample() {
             alt="First slide"
           />
           <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <img src="/images/text1.svg" alt="" />
+            <h5>
+              Geralt of Rivia, a solitary monster hunter, struggles to find his
+              place in a world where people often prove more wicked than beast
+            </h5>
+            <div className="d-flex gap-5 justify-content-center">
+              <p>2019</p>
+              <p style={{ border: "solid whhite" }}>TV Series</p>
+            </div>
+            <Button style={{ backgroundColor: "red", border: "none" }}>
+              WATCH NOW!
+            </Button>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item interval={1000}>
@@ -24,8 +35,22 @@ function IndividualIntervalsExample() {
             alt="Second slide"
           />
           <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <img src="/images/text2.svg" alt="" />
+
+            <h5>
+              Money Heist is a crime drama on Netflix - originally called La
+              Casa de Papel. Money Heist season 3 has just been released by the
+              streaming service. The plot reads: "Eight thieves take hostages
+              and lock themselves in the Royal Mint of Spain as a criminal
+              mastermind manipulates the police to carry out his plan."
+            </h5>
+            <div className="d-flex gap-5 justify-content-center">
+              <p>2017</p>
+              <p style={{ border: "solid whhite" }}>TV Series</p>
+            </div>
+            <Button style={{ backgroundColor: "red", border: "none" }}>
+              WATCH NOW!
+            </Button>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -35,21 +60,23 @@ function IndividualIntervalsExample() {
             alt="Third slide"
           />
           <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
+            <img src="/images/text3.svg" alt="" />
+            <h5>
+              In Gotham City, mentally troubled comedian Arthur Fleck is
+              disregarded and mistreated by society. He then embarks on a
+              downward spiral of revolution and bloody crime. This path brings
+              him face-to-face with his alter-ego: the Joker.
+            </h5>
+            <div className="d-flex gap-5 justify-content-center">
+              <p>2019</p>
+              <p style={{ border: "solid whhite" }}>Movies</p>
+            </div>
+            <Button style={{ backgroundColor: "red", border: "none" }}>
+              WATCH NOW!
+            </Button>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      <div>
-        <img
-          src="/images/shadow.svg"
-          alt=""
-          width="100%"
-          style={{ position: "absolute", top: "500px" }}
-        />
-      </div>
     </>
   );
 }
