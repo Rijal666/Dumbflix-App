@@ -13,8 +13,6 @@ export default function Home() {
     return response.data.data;
   });
 
-  console.log(films, "kontool");
-
   let asceding = [];
   if (films !== undefined) {
     asceding = [...films];
@@ -26,7 +24,7 @@ export default function Home() {
       <Navbars />
       <Carousel />
       <Container>
-        <Col style={{ margin: "200px 0" }} className="mb-5">
+        <Col style={{ margin: "50px 0" }} className="mb-5">
           <h1 className="text-light fw-bold">Film Terbaru</h1>
         </Col>
         <div
